@@ -1,0 +1,92 @@
+#!/bin/env python3
+import os
+import requests
+import re
+import email
+
+from datetime import datetime, timezone
+from urllib.parse import parse_qs
+
+from iso639 import Lang  # pypi iso639-lang
+
+
+def get_locale(langs):
+    locale = langs.replace("*", "").split("\n")[0].split(",")
+    count = len(locale)
+    if count > 2:
+        return f"MULTi{count}"
+    locale = [l.split(" - ")[0].strip() for l in locale]
+    locale = [Lang(l).pt2b for l in locale]
+    return "/".join(locale).upper()
+
+
+def parse_reqs(reqs):
+    reqs = re.sub("<[^<]+?>", "", reqs.replace("<br>", "\n")).splitlines()
+    return "\n".join([l for l in reqs if l.startswith("Processor") or l.startswith("Memory") or l.startswith("Graphics")])
+
+
+def fetch_storefront_data(appid):
+    storeurl = "https://store.steampowered.com/api/appdetails"
+    query = {"appids": appid, "l": "english"}
+    response = requests.get(storeurl, params=query)
+    response.encoding = 'UTF-8'
+    game = response.json()[appid]["data"]
+    return game
+
+def parse_storefront_data(game):
+    name = game["name"]
+    version = "<version>"
+    langs = re.sub(
+        "<[^<]+?>", "", game["supported_languages"].replace("<br>", "\n"))
+    locale = get_locale(langs)
+    date = email.utils.format_datetime(datetime.now(timezone.utc))
+    platform = "<platform>"
+    genre = [g["description"] for g in game["genres"]]
+    magnet = "<magnet>"
+    description = game["short_description"]
+    reqs = parse_reqs(game["pc_requirements"]["minimum"])
+
+    return f"""---
+title: "{name} - {version} - {locale}"
+date: "{date}"
+categories: ["{platform}"]
+tags: [{", ".join(genre)}]
+magnet: "{magnet}"
+---
+
+{description}
+
+## System Requirements
+{reqs}
+
+## Other info
+{langs}
+<!--<mods included, collection titles, etc..>-->
+
+## Features
+|||
+|-------------------------|-----|
+| Play without extracting | YES |
+| Blocks Non-LAN traffic  | YES |
+
+## Download
+{{{{< download >}}}}
+
+## Screenshots
+![screenshot 1](screenshot1.jpg)
+![screenshot 2](screenshot2.jpg)
+![screenshot 3](screenshot3.jpg)
+"""
+
+def main():
+    
+    print("Content-Type:text/plain; charset=utf-8")
+    print()
+    appid = parse_qs(os.environ["QUERY_STRING"])["appid"][0]
+    game = fetch_storefront_data(appid)
+    print(parse_storefront_data(game))
+
+# end main
+
+
+main()

@@ -129,9 +129,7 @@ class Entity
         return <<<EOD
             [img]{$this->hero}[/img]
             [size=22]{$this->name} - <Version> - {$this->locale} - GNU/Linux {$this->platform} - jc141[/size]
-            
-            <Changes vs last if any>
-            
+                                   
             {$this->desc}
             
             [size=14][url=https://github.com/jc141x/portal]SETUP AND SUPPORT[/url][/size]

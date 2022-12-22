@@ -141,7 +141,7 @@ class Entity
             
             Feature set
             Play without extracting, highly efficient usage of space.
-            NON-LAN network activity of the game blocked by default, no data sent back to any third party.
+            NON-LAN network activity of the game blocked by default, no data sent back to any third party. (if necessary package is installed)
             
             [img]{$this->screen[0]}[/img]
             [img]{$this->screen[1]}[/img]

@@ -128,7 +128,9 @@ class Entity
 
         return <<<EOD
             [img]{$this->hero}[/img]
-            [size=22]{$this->name} - <Version> - {$this->locale} - GNU/Linux {$this->platform} - jc141[/size]
+            [size=22]
+            {$this->name} - <Version> - {$this->locale} - GNU/Linux {$this->platform} - jc141
+            [/size]
                                    
             {$this->desc}
             

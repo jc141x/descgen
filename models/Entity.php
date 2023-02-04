@@ -134,7 +134,7 @@ class Entity
                                    
             {$this->desc}
             
-            [size=14][url=https://github.com/jc141x/portal]SETUP AND SUPPORT[/url][/size]
+            [size=14][url=https://github.com/jc141x/portal]SETUP AND SUPPORT[/url][/size] - Setup is not optional.
             Game requirements
             {$this->reqs}
             

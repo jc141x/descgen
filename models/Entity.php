@@ -140,10 +140,13 @@ class Entity
             
             Other information
             Languages: {$this->lang}{$this->maybe_audio}
+            Language change access: In-game/File editing while mounted(specify which).
             
-            Feature set
+            Features
             Play without extracting, highly efficient usage of space.
-            NON-LAN network activity of the game blocked by default, no data sent back to any third party. (if necessary package is installed)
+            WAN network activity of the game blocked by default, no data sent back to any third party. (if necessary package is installed)
+            Filesystem isolation for keeping home directory clean. (if necessary package is installed)
+
             
             [img]{$this->screen[0]}[/img]
             [img]{$this->screen[1]}[/img]

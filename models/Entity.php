@@ -145,7 +145,6 @@ class Entity
             Features
             Play without extracting, highly efficient usage of space.
             WAN network activity of the game blocked by default, no data sent back to any third party. (if necessary package is installed)
-
             
             [img]{$this->screen[0]}[/img]
             [img]{$this->screen[1]}[/img]

@@ -142,9 +142,9 @@ class Entity
             Languages: {$this->lang}{$this->maybe_audio}
             Language change access: In-game/File editing while mounted(specify which).
             
-            Features
-            Play without extracting, highly efficient usage of space.
-            WAN network activity of the game blocked by default, no data sent back to any third party. (if necessary package is installed)
+            Play without extracting, highly efficient usage of space through the use of DwarFS compression filesystem.
+            WAN network activity of the game blocked by default, no data sent back to any third party through the use of bindToInterface. (if installed)
+            Complete filesystem isolation from user's system for the game files through the use of Bubblewrap. They do not have any ability to interact with the system beyond having the permission to read it.
             
             [img]{$this->screen[0]}[/img]
             [img]{$this->screen[1]}[/img]

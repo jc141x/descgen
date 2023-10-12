@@ -141,7 +141,8 @@ class Entity
             Other information
             Languages: {$this->lang}{$this->maybe_audio}
             Language change access: In-game/File editing while mounted(specify which).
-            
+
+            Features
             - Play without extracting, highly efficient usage of space through the use of DwarFS compression filesystem.
             
             - WAN network activity of the game blocked by default, no data sent back to any third party through the use of bindToInterface. (if installed)

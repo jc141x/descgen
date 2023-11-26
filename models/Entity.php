@@ -13,6 +13,7 @@ class Entity
     private $langs;
     private $locale;
     private $platform;
+    private $date;
     private $genres;
 
     public function fetch($appid, $format = "bb")
@@ -28,7 +29,7 @@ class Entity
             return Logger::warn($th->getMessage());
         }
         if (!isset($response_arr['data'])) {
-            return Logger::warn($th->getMessage);
+            return Logger::warn("no data");
         }
         $data = $response_arr['data'];
         $this->name = $data['name'];
@@ -77,51 +78,9 @@ class Entity
         
         if ($format == "bb") {
             return $this->bb();
-        } elseif ($format == "md") {
-            return $this->md();
         } else {
             return Logger::warn("invalid format: " . $format);
         }
-    }
-
-    private function md() {
-
-        return <<<EOD
-            ---
-            title: "{$this->name} - <version>"
-            date: "{$this->date}"
-            categories: ["{$this->platform}"]
-            tags: [{$this->genres}]
-            magnet: "<magnet link>"
-            featured: "{$this->hero}"
-            ---
-            
-            {{< lead >}}
-            {$this->desc}
-            {{< /lead >}}
-            
-            ## System Requirements
-            {$this->reqs}
-
-            ## Other info
-            Languages: {$this->lang}{$this->maybe_audio}
-            <--<mods included, collection titles, etc..>-->
-            
-            ## Features
-            |||
-            |-------------------------|-----|
-            | Play without extracting | YES |
-            | Blocks Non-LAN traffic  | YES |
-            
-            ## Download
-            {{< download >}}
-            
-            ## Screenshots
-            ![screenshot 1]({$this->screen[0]})
-            ![screenshot 2]({$this->screen[1]})
-            ![screenshot 3]({$this->screen[2]})
-
-            EOD;
     }
 
     private function bb() {

@@ -93,24 +93,26 @@ class Entity
                                    
             {$this->desc}
             
-            [size=14][url=https://github.com/jc141x/portal]SETUP AND SUPPORT[/url][/size] - Setup is not optional.
+            [size=14][url=https://gitlab.com/jc141x/portal/]SETUP AND SUPPORT[/url][/size] - Setup is not optional.
             Game requirements
             {$this->reqs}
             
-            Other information
+            Other info
             Languages: {$this->lang}{$this->maybe_audio}
             Language change access: In-game/File editing while mounted(specify which).
 
             Features
             - Play without extracting, highly efficient usage of space through the use of DwarFS compression filesystem.
             
-            - WAN network activity of the game blocked by default, no data sent back to any third party through the use of bindToInterface. (if installed)
-            
-            - Complete filesystem isolation from user's system for the game files through the use of Bubblewrap. They do not have any ability to interact with the system beyond having the permission to read it.
-            
+            - All network activity of the game blocked by default, no data sent back to any third party.
+
+            - Filesystem isolation for the game files through the use of Bubblewrap. Read-only access to your personal files for the game. 
+
             [img]{$this->screen[0]}[/img]
             [img]{$this->screen[1]}[/img]
             [img]{$this->screen[2]}[/img]
+
+            Donations with Monero/XMR at: 4ABGQLAeAgiauvay11VRrWXRRtraRCU6oaC6uG9RUnNCHN4eepzWjEB6sHF92sUrSED5b8GyY7Ayh57R1jUdcKZg7is2DW3
 
             EOD;
     }

@@ -112,8 +112,6 @@ class Entity
             [img]{$this->screen[1]}[/img]
             [img]{$this->screen[2]}[/img]
 
-            Donations with Monero/XMR at: 4ABGQLAeAgiauvay11VRrWXRRtraRCU6oaC6uG9RUnNCHN4eepzWjEB6sHF92sUrSED5b8GyY7Ayh57R1jUdcKZg7is2DW3
-
             EOD;
     }
 

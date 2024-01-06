@@ -2,6 +2,7 @@
 
 class Entity
 {
+    private $appid;
     private $name;
     private $hero;
     private $screen = array();
@@ -21,7 +22,7 @@ class Entity
         if (!$appid) {
             return Logger::warn("no appid");
         }
-        
+        $this->appid = $appid;
         $url = "https://store.steampowered.com/api/appdetails?appids=$appid&l=english";
         try {
             $response_arr = json_decode(file_get_contents($url), true)[$appid];
@@ -88,7 +89,7 @@ class Entity
         return <<<EOD
             [img]{$this->hero}[/img]
             [size=22]
-            {$this->name} - <Version> - {$this->locale} - GNU/Linux {$this->platform} - jc141
+            {$this->name} - <Version> - {$this->locale} - GNU/Linux {$this->platform} - jc141 (Appid={$this->appid})
             [/size]
                                    
             {$this->desc}

@@ -107,7 +107,7 @@ class Entity
             
             - All network activity of the game blocked by default, no data sent back to any third party.
 
-            - Filesystem isolation for the game files through the use of Bubblewrap. Read-only access to your personal files for the game. 
+            - Filesystem isolation for the game files through the use of Bubblewrap. Read-only access to your personal files for the game. (Native only)
 
             [img]{$this->screen[0]}[/img]
             [img]{$this->screen[1]}[/img]

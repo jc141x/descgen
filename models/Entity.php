@@ -102,13 +102,17 @@ class Entity
             Languages: {$this->lang}{$this->maybe_audio}
             Language change access: In-game/File editing while mounted(specify which).
 
-            Features
+            Integrated features
             - Play without extracting, highly efficient usage of space through the use of DwarFS compression filesystem.
             
             - All network activity of the game blocked by default, no data sent back to any third party.
-
-            - Filesystem isolation for the game files through the use of Bubblewrap. Read-only access to your personal files for the game. (Native only)
-
+            
+            - Filesystem isolation for the game files through the use of Bubblewrap. All user data is read-only to the game when ran.
+            
+            - Gamescope support. Adds ability to enable additional features such as FSR, NIS, HDR and other options used on SteamDeck.
+            
+            - Global and local default configuration available to users to pick and choose which features to have enabled or not. (as well as general behavior)
+                        
             [img]{$this->screen[0]}[/img]
             [img]{$this->screen[1]}[/img]
             [img]{$this->screen[2]}[/img]

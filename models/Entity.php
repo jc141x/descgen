@@ -95,7 +95,7 @@ class Entity
             {$this->desc}
             
             [size=14][url=https://gitlab.com/jc141x/portal/]SETUP AND SUPPORT[/url][/size] - Setup is not optional.
-            Game requirements
+            Game reqs
             {$this->reqs}
             
             Other info
@@ -103,15 +103,15 @@ class Entity
             Language change access: In-game/File editing while mounted(specify which).
 
             Integrated features
-            - Play without extracting, highly efficient usage of space through the use of DwarFS compression filesystem.
+            - Play without extracting, highly efficient usage of space through the use of the DwarFS compression filesystem.
             
-            - All network activity of the game blocked by default, no data sent back to any third party.
+            - All network activity in the game is blocked by default; no data is sent back to any third party.
             
-            - Filesystem isolation for the game files through the use of Bubblewrap. All user data is read-only to the game when ran.
+            - Filesystem isolation for the game files through the use of Bubblewrap. All user data is read-only to the game when it is run.
             
-            - Gamescope support. Adds ability to enable additional features such as FSR, NIS, HDR and other options used on SteamDeck.
+            - Gamescope support. Adds the ability to enable additional features such as FSR, NIS, HDR and other options used on SteamDeck.
             
-            - Global and local default configuration available to users to pick and choose which features to have enabled or not. (as well as general behavior)
+            - Global and local default configurations are available to users to pick and choose which features to enable or not. (as well as general behavior)
                         
             [img]{$this->screen[0]}[/img]
             [img]{$this->screen[1]}[/img]

@@ -8,14 +8,15 @@ class Entity
     private $screen = array();
     private $desc;
     private $reqs;
+    private $reqs_table;
     private $maybe_audio;
     private $lang_count;
     private $lang;
+    private $lang_table;
     private $langs;
     private $locale;
     private $platform;
     private $date;
-    private $genres;
 
     public function fetch($appid, $format = "bb")
     {
@@ -45,6 +46,10 @@ class Entity
         $reqs_arr = explode("\n", $reqs);
         $reqs_arr = preg_grep("/(Processor|Memory|Graphics):.*/", $reqs_arr);
         $this->reqs = implode("\n", $reqs_arr);
+
+        foreach ($reqs_arr as $req) {
+            $this->reqs_table .= "| " . str_replace(":", " | ", $req) . " |\n";
+        }
     
         // localizations
         $lang_raw = $data["supported_languages"];
@@ -53,6 +58,13 @@ class Entity
         $langs = explode(",", $langs[0]);
         $this->lang_count = count($langs);
         $this->lang = strip_tags(implode(",", $langs));
+
+        foreach ($langs as $lang) {
+            $this->lang_table .= "| " . rtrim(strip_tags($lang), "*") . " | ";
+            $this->lang_table .= str_contains($lang, "*") ? "YES" : "NO";
+            $this->lang_table .= " |\n";
+        }
+
         $langs = str_replace("Simplified Chinese", "Chinese", $langs);
         $langs = str_replace("Spanish - Spain", "Spanish", $langs);
         $this->langs = str_replace("Portuguese - Brazil", "Portuguese", $langs);
@@ -65,20 +77,16 @@ class Entity
         } else {
             $this->locale = strtoupper(constant("Alpha3TCode::" . strtoupper(str_replace('*', '', strip_tags($langs[0])))));
         }
-    
+
         $this->platform = $data["platforms"]["linux"] ? "Native" : "Wine";
-    
-        //array_push($this->genres, $data["genres"][0]["description"]);
-        //array_push($this->genres, $data["genres"][1]["description"]);
-        $this->genres = implode(",",array_map(
-            fn($x): string => '"'.$x["description"].'"', $data["genres"]
-        ));
     
         date_default_timezone_set('UTC');
         $this->date = date(DATE_RFC822);
         
         if ($format == "bb") {
             return $this->bb();
+        } elseif ($format == "md") {
+            return $this->md();
         } else {
             return Logger::warn("invalid format: " . $format);
         }
@@ -120,4 +128,67 @@ class Entity
             EOD;
     }
 
+    private function md() {
+
+        return <<<EOD
+        ---
+        title: "{$this->name} | {$this->locale}"
+        
+        # generated using "date -u --rfc-3339=seconds"
+        date: {$this->date}
+        lastmod: {$this->date}
+        
+        # Cover Image
+        image: "{$this->hero}"
+        
+        # Release Info
+        gameID: "STEAM:{$this->appid}"
+        version: "<Version>"
+        runtime: "{$this->platform}"
+        
+        # Download info
+        magnet: "<Magnet>"
+        size: "<Size>"
+        ---
+        
+        {{% releases/info %}}
+        
+        {$this->desc}
+        
+        <!--more-->
+        
+        ## System Requirements
+        
+        |           | Required                                                      |
+        |-----------|---------------------------------------------------------------|
+        {$this->reqs_table}
+        ## Other info
+        
+        ### Languages
+        
+        |                  | Full Audio Support?  |
+        |------------------|----------------------|
+        {$this->lang_table}
+        Language change access: In-game/File editing while mounted(specify which).
+        
+        ## Integrated features
+        
+        - Play without extracting, highly efficient usage of space through the use of the DwarFS compression filesystem.
+        - All network activity in the game is blocked by default; no data is sent back to any third party.
+        - Filesystem isolation for the game files through the use of Bubblewrap. All user data is read-only to the game when it is run.
+        - Gamescope support. Adds the ability to enable additional features such as FSR, NIS, HDR and other options used on SteamDeck.
+        - Global and local default configurations are available to users to pick and choose which features to enable or not. (as well as general behavior)
+        
+        {{% releases/download %}}
+        
+        ## Screenshots
+        
+        ![Screenshot 1]({$this->screen[0]})
+        
+        ![Screenshot 2]({$this->screen[0]})
+        
+        ![Screenshot 3]({$this->screen[0]})
+        
+        EOD;
+    }
 }

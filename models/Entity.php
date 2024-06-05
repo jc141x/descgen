@@ -110,6 +110,8 @@ class Entity
             Languages: {$this->lang}{$this->maybe_audio}
             Language change access: In-game/File editing while mounted(specify which).
 
+            Gamepad support: Confirmed/Not Working/Could not verify/Not necessary for this game
+
             Integrated features
             - Play without extracting, highly efficient usage of space through the use of the DwarFS compression filesystem.
             
@@ -170,6 +172,7 @@ class Entity
         |------------------|----------------------|
         {$this->lang_table}
         Language change access: In-game/File editing while mounted(specify which).
+        Gamepad support: Confirmed/Not Working/Could not verify/Not necessary for this game
         
         ## Integrated features
         

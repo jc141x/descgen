@@ -17,6 +17,7 @@ class Entity
     private $locale;
     private $platform;
     private $date;
+    private $ea = false;
 
     public function fetch($appid, $format = "bb")
     {
@@ -35,6 +36,12 @@ class Entity
         }
         $data = $response_arr['data'];
         $this->name = $data['name'];
+        foreach ($data['genres'] as $genre) {
+            if ($genre['description'] == "Early Access") {
+                $this->ea = true;
+            }
+        }
+        $this->name .= $this->ea ? " (EA)" : "";
         $this->hero = "https://cdn.akamai.steamstatic.com/steam/apps/$appid/library_hero.jpg";
         array_push($this->screen, $data['screenshots'][0]['path_full']);
         array_push($this->screen, $data['screenshots'][1]['path_full']);

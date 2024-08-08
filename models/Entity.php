@@ -18,6 +18,7 @@ class Entity
     private $platform;
     private $date;
     private $ea = false;
+    private $genres;
 
     public function fetch($appid, $format = "bb")
     {
@@ -41,6 +42,9 @@ class Entity
                 $this->ea = true;
             }
         }
+
+        $this->genres = implode(", ", array_column($data['genres'], 'description'));
+
         $this->name .= $this->ea ? " (EA)" : "";
         $this->hero = "https://cdn.akamai.steamstatic.com/steam/apps/$appid/library_hero.jpg";
         array_push($this->screen, $data['screenshots'][0]['path_full']);
@@ -106,9 +110,11 @@ class Entity
             [size=22]
             {$this->name} - <Version> - {$this->locale} - GNU/Linux {$this->platform} - jc141 (Appid={$this->appid})
             [/size]
+
+            Genres: {$this->genres}
                                    
             {$this->desc}
-            
+
             [size=14][url=https://gitlab.com/jc141x/portal/]SETUP AND SUPPORT[/url][/size] - Setup is not optional.
             Game reqs
             {$this->reqs}

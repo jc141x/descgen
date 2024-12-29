@@ -152,7 +152,7 @@ class Entity
         return <<<EOD
             ![Image]({$this->hero})
 
-            #### {$this->name} - <Version> - {$this->locale} - GNU/Linux {$this->platform} - jc141
+            #### {$this->name} - <Version> - {$this->locale} - GNU/Linux {$this->platform} - jc141 (Appid={$this->appid})
 
             ---
 

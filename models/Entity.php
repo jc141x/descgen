@@ -121,7 +121,8 @@ class Entity
             Vulkan capable GPU/APU
 
             {$this->reqs}
-            
+            remove anything above relevant to being on windows instead of gnu/linux (and this line)
+
             Other info
             Languages: {$this->lang}{$this->maybe_audio}
             Language change access: In-game/File editing while mounted(specify which).
@@ -149,65 +150,59 @@ class Entity
     private function md() {
 
         return <<<EOD
-        ---
-        title: "{$this->name} | {$this->locale}"
-        
-        # generated using "date -u --rfc-3339=seconds"
-        date: {$this->date}
-        lastmod: {$this->date}
-        
-        # Cover Image
-        image: "{$this->hero}"
-        
-        # Release Info
-        gameID: "STEAM:{$this->appid}"
-        version: "<Version>"
-        runtime: "{$this->platform}"
-        
-        # Download info
-        magnet: "<Magnet>"
-        size: "<Size>"
-        ---
-        
-        {{% releases/info %}}
-        
-        {$this->desc}
-        
-        <!--more-->
-        
-        ## System Requirements
-        
-        |           | Required                                                      |
-        |-----------|---------------------------------------------------------------|
-        {$this->reqs_table}
-        ## Other info
-        
-        ### Languages
-        
-        |                  | Full Audio Support?  |
-        |------------------|----------------------|
-        {$this->lang_table}
-        Language change access: In-game/File editing while mounted(specify which).
-        Gamepad support: Confirmed/Not Working/Could not verify/Not necessary for this game
-        
-        ## Integrated features
-        
-        - Play without extracting, highly efficient usage of space through the use of the DwarFS compression filesystem.
-        - All network activity in the game is blocked by default; no data is sent back to any third party.
-        - Filesystem isolation for the game files through the use of Bubblewrap. All user data is read-only to the game when it is run.
-        - Gamescope support. Adds the ability to enable additional features such as FSR, NIS, HDR and other options used on SteamDeck.
-        - Global and local default configurations are available to users to pick and choose which features to enable or not. (as well as general behavior)
-        
-        {{% releases/download %}}
-        
-        ## Screenshots
-        
-        ![Screenshot 1]({$this->screen[0]})
-        
-        ![Screenshot 2]({$this->screen[0]})
-        
-        ![Screenshot 3]({$this->screen[0]})
-        
-        EOD;
+            ![Image]({$this->hero})
+
+            #### {$this->name} - <Version> - {$this->locale} - GNU/Linux {$this->platform} - jc141
+
+            ---
+
+            Genres: {$this->genres}
+
+            > {$this->desc}
+
+            ---
+
+            [SETUP AND SUPPORT](https://gitlab.com/jc141x/portal) - Setup is not optional.
+
+            System requirements
+
+            Any GNU/Linux distro. We recommend arch based [EndeavourOS](https://endeavouros.com/).
+
+            Vulkan capable GPU/APU
+
+            {$this->reqs}
+            remove anything above relevant to being on windows instead of gnu/linux (and this line)
+
+            ---
+
+            Other info
+
+            Languages: {$this->lang}{$this->maybe_audio}
+
+            Language change access: In-game/File editing while mounted(specify which).
+
+            ---
+
+            Integrated features
+
+            Run with no extraction due to the Dwarfs image format. Mods/configs can be added through overlay-storage directory.
+
+            Filesystem isolation for the game files through the use of Bubblewrap. Executables have read-only access to the system except for /dev /tmp.
+
+            All network activity of the executable blocked by default with Bubblewrap isolation. Useful for privacy and security concerns.
+
+            Gamescope support. Scales to desktop resolution, isolates game from display server and provides many useful features.
+
+            Global and local default configurations are available to users to pick which features to enable or not.
+
+            ---
+
+            ![]({$this->screen[0]})
+
+            ![]({$this->screen[1]})
+
+            ![]({$this->screen[2]})
+  
+            EOD;
     }
 }

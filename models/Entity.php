@@ -121,7 +121,6 @@ class Entity
             Vulkan capable GPU/APU
 
             {$this->reqs}
-            remove anything above relevant to being on windows instead of gnu/linux (and this line)
 
             Other info
             Languages: {$this->lang}{$this->maybe_audio}
@@ -171,7 +170,6 @@ class Entity
             Vulkan capable GPU/APU
 
             {$this->reqs}
-            remove anything above relevant to being on windows instead of gnu/linux (and this line)
 
             ---
 

@@ -1,16 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                margin: 0;
+                height: 100vh;
+            }
+            textarea {
+                height: 100%;
+                width: 100%;
+                border: 4px solid black;
+                margin: 0;
+                background-color: black;
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
 <?php
 
 require 'autoload.php';
-header('Content-type: text/plain');
 $ent = new Entity();
+$desc = "";
 if (isset($_GET['appid'])) {
     if (isset($_GET['format']))
     {
-        print($ent->fetch($_GET['appid'],$_GET['format']));
+        $desc = $ent->fetch($_GET['appid'],$_GET['format']);
     } else
     {
-        print($ent->fetch($_GET['appid']));
+        $desc = $ent->fetch($_GET['appid']);
     }
 }
-
+    ?>
+    <textarea><?php echo $desc; ?></textarea>
+    </body>
+</html>
 

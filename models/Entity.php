@@ -117,7 +117,7 @@ class Entity
 
             [size=14][url=https://gitlab.com/jc141x/portal/]SETUP AND SUPPORT[/url][/size] - Setup is not optional.
             System requirements
-            Any GNU/Linux distro. We recommend arch based [url=https://endeavouros.com/][b]EndeavourOS[/b][/url].
+            We recommend arch based [url=https://endeavouros.com/][b]EndeavourOS[/b][/url]. Debian Sid and Fedora are also supported.
             Vulkan capable GPU/APU
 
             {$this->reqs}

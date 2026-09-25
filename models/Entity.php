@@ -28,7 +28,7 @@ class Entity
         $this->appid = $appid;
         $url = "https://store.steampowered.com/api/appdetails?appids=$appid&l=english";
         try {
-            $response_arr = json_decode(file_get_contents($url), true)[$appid];
+            $response_arr = array_first(json_decode(file_get_contents($url), true));
         } catch (Throwable$th) {
             return Logger::warn($th->getMessage());
         }
